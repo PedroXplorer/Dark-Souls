@@ -238,3 +238,4 @@ def batalha(jogador, inimigo):
     else:
         print(f"{inimigo.name} foi derrotado. Você venceu!")
         jogador.Level_up(inimigo)
+    jogador.Level_up(inimigo)
