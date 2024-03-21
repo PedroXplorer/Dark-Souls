@@ -1,4 +1,3 @@
-from Objetos import *
 from random import randint
 import time
 
@@ -156,6 +155,11 @@ class Inimigo:
         self.atk = atk
         self.df = df
         self.lv = lv
+    def __init__(self, name, hp, atk, df,xp = 0):
+        self.name = name
+        self.hp = hp
+        self.atk = atk
+        self.df = df
         self.xp = xp
     
     def atacar(self, jogador):
@@ -242,3 +246,4 @@ def batalha(jogador, inimigo):
         print(f"{inimigo.name} foi derrotado. Você venceu!")
         jogador.Level_up(inimigo)
     jogador.Level_up(inimigo)
+
