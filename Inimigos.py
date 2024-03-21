@@ -9,4 +9,3 @@ from random import randint
 Rato_Gigante = Inimigo('Rato Gigante', 12, 11,3, 1,5, xp = randint(3,4))
 Slime = Inimigo('Slime',15,12,4,1,5, xp = randint(3,6))
 Morcego = Inimigo('Morcego',13,11,3,1,5, xp=randint(2,4))
-Águia = Inimigo('Águia')
