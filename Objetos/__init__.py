@@ -28,7 +28,7 @@ class Caracter():
         if marca == 0:
             marca = 20
 
-        elif self.xp >= marca:
+        if self.xp >= marca:
     
             self.xp = self.xp - marca
             self.lv = self.lv + 1
@@ -155,12 +155,6 @@ class Inimigo:
         self.atk = atk
         self.df = df
         self.lv = lv
-    def __init__(self, name, hp, atk, df,xp = 0):
-        self.name = name
-        self.hp = hp
-        self.atk = atk
-        self.df = df
-        self.xp = xp
     
     def atacar(self, jogador):
         dano = self.atk - jogador.df
