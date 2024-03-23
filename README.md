@@ -1,5 +1,10 @@
 Linguagem: python
-ATENÇÃO: No próprio código já estão escritas o que cada função, é só usar help(nomedafunção) para saber o que ela faz.
+
+ATENÇÃO: No próprio código já estão escritas o que cada função, é só usar: 
+from Objetos import *
+from Inimigos import *
+help(nomedafuncaodaclasses)
+
 Funções Incrementadas até o momento:
 1 - Classes Caracter e Inimigo:
 - A classe Caracter representa o personagem controlado pelo jogador, enquanto a classe Inimigo representa os adversários que o jogador enfrentará.
