@@ -4,6 +4,27 @@ import time
 
 class Caracter():
     def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0):
+        """
+                    Criador: PedroXplorer
+
+            Criar um novo personagem.
+
+        Args / Parâmetros:
+            name (str): O nome do personagem.
+            hpi (int): Pontos de vida inicial.
+            hp (int): Pontos de vida.
+            atk (int): Valor do ataque.
+            mgk (int): Valor da magia.
+            df (int): Valor da defesa.
+            ouro (int): Quantidade de ouro do personagem.
+            php (int): Poções de vida.
+            pmk (int): Poções de magia.
+            lv (int): Nível do personagem.
+            xp (int): Pontos de experiência do personagem.
+            m (int): Pontos de melhoria para distribuir ao subir de nível.
+
+        """
+    
         self.name = name
         self.hp = hp
         self.php = php
@@ -21,6 +42,18 @@ class Caracter():
         self.atk = atk
 
     def Level_up(self,alvo):
+        """
+                    Criador: PedroXplorer
+
+            Aumenta o nível do personagem e permite distribuir pontos de atributo.
+
+        Args / Parâmetros:
+            alvo (Inimigo): Oponente derrotado.
+            self (Caracter): Personagem vitorioso.
+        Returns:
+            int: 0 se a experiência não for suficiente para subir de nível.
+            
+        """
         self.m  = self.m + 1
         self.xp = self.xp + alvo.xp
         marca = self.lv * 20
@@ -111,6 +144,17 @@ class Caracter():
             return 0
 
     def atacar(self, alvo):
+        """
+                    Criador: PedroXplorer
+
+            Realiza um ataque ao alvo.
+
+        Args / Parâmetros:
+            alvo (Inimigo): Oponente que será atacado.
+            self (Caracter): Personagem que está atacado.
+        Returns:
+            int: O dano causado.
+        """
         dano = self.atk - alvo.df
         if dano <= 0 :
             dano = 0
@@ -122,6 +166,16 @@ class Caracter():
         return dano
 
     def usar_magia(self, alvo):
+        """
+                    Criador: PedroXplorer
+            Usa magia contra o alvo.
+
+        Args / Parâmetros:
+            alvo (Inimigo): Oponente que será atacado.
+            self (Caracter): Personagem que está atacado.
+        Returns:
+            int: O dano causado.
+        """
         if self.cont_mgk > 0:
             alvo.hp = alvo.hp - self.mgk
             if alvo.hp <= 0:
@@ -131,6 +185,16 @@ class Caracter():
             return
     
     def usar_pocao(self, tipo):
+        """
+                    Criador: PedroXplorer
+            Usa uma poção. Para recuperar a vida ou pontos de magia do personagem.
+
+        Args:
+            tipo (str): Tipo de poção a ser usada ('vida' ou 'magia').
+
+        Returns:
+            None
+        """
         if self.cont_p > 0:
             if tipo == 'vida' and self.php > 0:
                 cura = randint(10,20)
@@ -153,6 +217,19 @@ class Caracter():
 
 class Inimigo:
     def __init__(self, name, hp, atk, df,lv,ouro, xp = 0):
+        """
+                    Criador: PedroXplorer
+        Cria um novo inimigo.
+
+        Args / Parâmetros:
+            name (str): O nome do inimigo.
+            hp (int): Pontos de vida do inimigo.
+            atk (int): Valor do ataque do inimigo.
+            df (int): Valor da defesa do inimigo.
+            lv (int): Nível do inimigo.
+            ouro (int): Quantidade de ouro que o inimigo pode largar.
+            xp (int): Pontos de experiência que o inimigo concede ao ser derrotado (padrão: 0; ou seja é opcional).
+        """
         self.name = name
         self.ouro = ouro
         self.hp = hp
@@ -162,6 +239,17 @@ class Inimigo:
         self.xp = xp
     
     def atacar(self, jogador):
+        """
+                    Criador: PedroXplorer
+        Realiza um ataque ao jogador.
+
+        Args / Parâmetros:
+            jogador (Caracter): O jogador que será atacado.
+            self (Inimigo): O inimigo que está atacando.
+
+        Returns:
+            int: O dano causado ao jogador.
+        """
         dano = self.atk - jogador.df
         if dano <= 0 :
             dano = 0
@@ -170,6 +258,17 @@ class Inimigo:
             return dano
         
 def exibir_status(personagem, inimigo):
+    """
+                    Criador: PedroXplorer
+      Exibe o status atual do jogador e do inimigo durante a batalha.
+
+        Args / Parâmetros:
+            personagem (Caracter): O jogador.
+            inimigo (Inimigo): O inimigo.
+
+        Returns:
+            None
+    """
     print ('\n' +'='*30)
     print(f'{personagem.name.upper():^30}')
     print('='*30)
@@ -181,6 +280,24 @@ def exibir_status(personagem, inimigo):
     print("=" * 30)
 
 def batalha(jogador, inimigo):
+    """
+                    Criador: PedroXplorer
+
+            Simula uma batalha entre o jogador e um inimigo. 
+            Usa a maioria das outras funções nesse código.
+
+        Args / Parâmetros:
+            jogador (Caracter): O jogador.
+            inimigo (Inimigo): O inimigo.
+        Funções usadas:
+            atacar: Esta função é chamada quando o jogador decide atacar o inimigo.
+            usar_magia: Esta função é chamada quando o jogador decide usar magia contra o inimigo.
+            exibir_status: Esta função é chamada para exibir o status atual do jogador e do inimigo durante a batalha.
+            time.sleep também é usada para adicionar um atraso de 1 segundo entre cada ação durante a batalha.
+
+        Returns:
+            None
+    """
     print (f'{jogador.name} vs {inimigo.name}')
 
     while jogador.hp > 0 and inimigo.hp > 0:

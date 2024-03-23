@@ -4,6 +4,8 @@
 # Ordem de organizar inimigos
 # --  name, hp, atk, df,lv,ouro, xp
 
+# Código principal do programa, utiliza funções da pasta 'Objetos'
+
 from Objetos import *
 from Inimigos import *
 
