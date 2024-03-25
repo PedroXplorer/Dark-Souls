@@ -32,5 +32,5 @@ ele foi imaginado como um jogo de escolhas, onde são informadas opções ao jog
 a história é direcionada para um outro lado...
 
 ADMINISTRADORES ATUAIS DO PROJETO:
-- PedroXplorer
+- PedroXplorer / Pedro Henrique
 - Skip0s

@@ -7,7 +7,6 @@
 # Código principal do programa, utiliza funções da pasta 'Objetos'
 
 from Objetos import *
-from Inimigos import *
 
 nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
