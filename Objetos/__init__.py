@@ -9,7 +9,7 @@ class Caracter():
 
             Criar um novo personagem.
 
-        Args / Parâmetros:
+        Args / Parametros:
             name (str): O nome do personagem.
             hpi (int): Pontos de vida inicial.
             hp (int): Pontos de vida.
@@ -17,11 +17,11 @@ class Caracter():
             mgk (int): Valor da magia.
             df (int): Valor da defesa.
             ouro (int): Quantidade de ouro do personagem.
-            php (int): Poções de vida.
-            pmk (int): Poções de magia.
-            lv (int): Nível do personagem.
-            xp (int): Pontos de experiência do personagem.
-            m (int): Pontos de melhoria para distribuir ao subir de nível.
+            php (int): Pocoes de vida.
+            pmk (int): Pocoes de magia.
+            lv (int): Nivel do personagem.
+            xp (int): Pontos de experiencia do personagem.
+            m (int): Pontos de melhoria para distribuir ao subir de nivel.
 
         """
     
@@ -45,13 +45,13 @@ class Caracter():
         """
                     Criador: PedroXplorer
 
-            Aumenta o nível do personagem e permite distribuir pontos de atributo.
+            Aumenta o nivel do personagem e permite distribuir pontos de atributo.
 
-        Args / Parâmetros:
+        Args / Parametros:
             alvo (Inimigo): Oponente derrotado.
             self (Caracter): Personagem vitorioso.
         Returns:
-            int: 0 se a experiência não for suficiente para subir de nível.
+            int: 0 se a experiencia nao for suficiente para subir de nivel.
             
         """
         self.m  = self.m + 1
@@ -149,8 +149,8 @@ class Caracter():
 
             Realiza um ataque ao alvo.
 
-        Args / Parâmetros:
-            alvo (Inimigo): Oponente que será atacado.
+        Args / Parametros:
+            alvo (Inimigo): Oponente que sera atacado.
             self (Caracter): Personagem que está atacado.
         Returns:
             int: O dano causado.
@@ -170,9 +170,9 @@ class Caracter():
                     Criador: PedroXplorer
             Usa magia contra o alvo.
 
-        Args / Parâmetros:
-            alvo (Inimigo): Oponente que será atacado.
-            self (Caracter): Personagem que está atacado.
+        Args / Parametros:
+            alvo (Inimigo): Oponente que sera atacado.
+            self (Caracter): Personagem que esta atacando.
         Returns:
             int: O dano causado.
         """
@@ -187,10 +187,10 @@ class Caracter():
     def usar_pocao(self, tipo):
         """
                     Criador: PedroXplorer
-            Usa uma poção. Para recuperar a vida ou pontos de magia do personagem.
+            Usa uma pocao. Para recuperar a vida ou pontos de magia do personagem.
 
-        Args:
-            tipo (str): Tipo de poção a ser usada ('vida' ou 'magia').
+        Args / Parametros:
+            tipo (str): Tipo de pocao a ser usada ('vida' ou 'magia').
 
         Returns:
             None
@@ -221,14 +221,14 @@ class Inimigo:
                     Criador: PedroXplorer
         Cria um novo inimigo.
 
-        Args / Parâmetros:
+        Args / Parametros:
             name (str): O nome do inimigo.
             hp (int): Pontos de vida do inimigo.
             atk (int): Valor do ataque do inimigo.
             df (int): Valor da defesa do inimigo.
-            lv (int): Nível do inimigo.
+            lv (int): Nivel do inimigo.
             ouro (int): Quantidade de ouro que o inimigo pode largar.
-            xp (int): Pontos de experiência que o inimigo concede ao ser derrotado (padrão: 0; ou seja é opcional).
+            xp (int): Pontos de experiencia que o inimigo concede ao ser derrotado (padrão: 0; ou seja é opcional).
         """
         self.name = name
         self.ouro = ouro
@@ -243,8 +243,8 @@ class Inimigo:
                     Criador: PedroXplorer
         Realiza um ataque ao jogador.
 
-        Args / Parâmetros:
-            jogador (Caracter): O jogador que será atacado.
+        Args / Parametros:
+            jogador (Caracter): O jogador que sera atacado.
             self (Inimigo): O inimigo que está atacando.
 
         Returns:
@@ -262,7 +262,7 @@ def exibir_status(personagem, inimigo):
                     Criador: PedroXplorer
       Exibe o status atual do jogador e do inimigo durante a batalha.
 
-        Args / Parâmetros:
+        Args / Parametros:
             personagem (Caracter): O jogador.
             inimigo (Inimigo): O inimigo.
 
@@ -284,16 +284,16 @@ def batalha(jogador, inimigo):
                     Criador: PedroXplorer
 
             Simula uma batalha entre o jogador e um inimigo. 
-            Usa a maioria das outras funções nesse código.
+            Usa a maioria das outras funcoes nesse codigo.
 
-        Args / Parâmetros:
+        Args / Parametros:
             jogador (Caracter): O jogador.
             inimigo (Inimigo): O inimigo.
-        Funções usadas:
-            atacar: Esta função é chamada quando o jogador decide atacar o inimigo.
-            usar_magia: Esta função é chamada quando o jogador decide usar magia contra o inimigo.
-            exibir_status: Esta função é chamada para exibir o status atual do jogador e do inimigo durante a batalha.
-            time.sleep também é usada para adicionar um atraso de 1 segundo entre cada ação durante a batalha.
+        Funcoes usadas:
+            atacar: Esta funcao e chamada quando o jogador decide atacar o inimigo.
+            usar_magia: Esta funcao e chamada quando o jogador decide usar magia contra o inimigo.
+            exibir_status: Esta função e chamada para exibir o status atual do jogador e do inimigo durante a batalha.
+            time.sleep: também e usada para adicionar um atraso de 1 segundo entre cada ação durante a batalha.
 
         Returns:
             None
@@ -361,4 +361,3 @@ def batalha(jogador, inimigo):
     else:
         print(f"{inimigo.name} foi derrotado. Você venceu!")
         jogador.Level_up(inimigo)
-
