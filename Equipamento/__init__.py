@@ -1,5 +1,7 @@
+
+
 class Caracter():
-    def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0,item =0):
+    def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0,item_Atk =0,item_Df = 0):
         """
                     Criador: PedroXplorer
 
@@ -29,7 +31,9 @@ class Caracter():
         self.xp = xp
         self.hpi = hpi 
         self.m = m
-        self.item = item
+        self.item_Atk = Item("Nome Atk ","Arma")
+        self.item_Df = Item("Nome Df ","Armadura")
+
         self.ouro = ouro
         
         self.cont_mgk = 5
@@ -37,7 +41,7 @@ class Caracter():
         self.df = df
         self.mgk = mgk
         self.atk = atk
-
+        
 class Item():
     def __init__(self,name, tipo, hp =0, atk =0, mgk =0 , df = 0 ):
         self.name = name
@@ -48,18 +52,21 @@ class Item():
         self.df = df
 
     def EquiparItem(self, usuario):
-        print(f'''  Atributo      Atual    Equipando    Diferença
-  1. Ataque   |  {usuario.atk + usuario.item}   |    {(usuario.atk - usuario.item)+ self.atk}      |    {usuario.item - self.atk}
+        if self.tipo == "Arma":
+            print(f'''  Atributo      Atual    Equipando    Diferença
+  1. Ataque   |  {usuario.atk + usuario.item_Atk.atk}   |    {(usuario.atk - usuario.item_Atk.atk)+ self.atk}      |    {usuario.item_Atk.atk - self.atk}
   2. Mágica   |  {usuario.mgk + usuario.item}   |    {(usuario.mgk - usuario.item) + self.mgk}      |    {(usuario.item) - self.mgk}
-  3. Defesa   |  {usuario.df + usuario.item}   |    {(usuario.df - usuario.item) + self.df}      |    {(usuario.item) - self.df}
-  4. Vida     |  {usuario.hp + usuario.item}  |    {(usuario.hp - usuario.item) + self.hp}     |    {(usuario.item) -self.hp}
-
         ''')
-        escolha = input(f"Você encontrou um item, deseja equipa-lo [S/N]: ")
+        elif self.tipo == "Armadura":
+            print(f'''  Atributo      Atual    Equipando    Diferença
+ 1. Defesa   |  {usuario.df + usuario.item}   |    {(usuario.df - usuario.item) + self.df}      |    {(usuario.item) - self.df}
+ 2. Vida     |  {usuario.hp + usuario.item}  |    {(usuario.hp - usuario.item) + self.hp}     |    {(usuario.item) -self.hp}
+''')
+    escolha = input(f"Você encontrou um item, deseja equipa-lo [S/N]: ")
 
 nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
-al = Item('Adaga','Ataque',5,6,3,10)
+al = Item('Adaga',"Arma",5,6,3,10)
 al.EquiparItem(jogador_principal)
 
 ## Valores invertidos -- Arrumar depois é isso ai
