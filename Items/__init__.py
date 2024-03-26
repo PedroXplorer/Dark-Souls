@@ -50,10 +50,10 @@ class Item():
 
     def EquiparItem(self, usuario):
         print(f'''  Atributo      Atual    Equipando    Diferença
-  1. Ataque   |  {usuario.atk + usuario.item}   |    {usuario.atk + self.atk}      |    {usuario.atk - self.atk}
-  2. Mágica   |  {usuario.mgk + usuario.item}   |    {usuario.mgk + self.mgk}      |    {usuario.mgk - self.mgk}
-  3. Defesa   |  {usuario.df + usuario.item}   |    {usuario.df + usuario.df}      |    {usuario.df - self.df}
-  4. Vida     |  {usuario.hp + usuario.item}  |    {usuario.hp  + usuario.hp}     |    {usuario.hp - self.hp}
+  1. Ataque   |  {usuario.atk + usuario.item}   |    {(usuario.atk - usuario.item)+ self.atk}      |    { usuario.item - self.atk}
+  2. Mágica   |  {usuario.mgk + usuario.item}   |    {(usuario.mgk - usuario.item) + self.mgk}      |    {(usuario.item) - self.mgk}
+  3. Defesa   |  {usuario.df + usuario.item}   |    {(usuario.df - usuario.item) + self.df}      |    {(usuario.item) - self.df}
+  4. Vida     |  {usuario.hp + usuario.item}  |    {(usuario.hp - usuario.item) + self.hp}     |    {(usuario.item) -self.hp}
 
         ''')
         escolha = input(f"Você encontrou um item, deseja equipa-lo [S/N]: ")
@@ -62,5 +62,6 @@ nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
 al = Item('Adaga','Ataque',5,6,3,10)
 al.EquiparItem(jogador_principal)
+x=0
 
-## TEM MUITA COISA ERRADA AKI -- Arrumar depois
+## Valores invertidos -- Arrumar depois é isso ai
