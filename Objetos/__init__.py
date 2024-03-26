@@ -1,9 +1,10 @@
+from Items import *
 from random import randint
 import time
 
 
 class Caracter():
-    def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0):
+    def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0,item =0):
         """
                     Criador: PedroXplorer
 
@@ -33,6 +34,7 @@ class Caracter():
         self.xp = xp
         self.hpi = hpi 
         self.m = m
+        self.item = item
         self.ouro = ouro
         
         self.cont_mgk = 5
