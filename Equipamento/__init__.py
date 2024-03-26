@@ -49,7 +49,7 @@ class Item():
 
     def EquiparItem(self, usuario):
         print(f'''  Atributo      Atual    Equipando    Diferença
-  1. Ataque   |  {usuario.atk + usuario.item}   |    {(usuario.atk - usuario.item)+ self.atk}      |    { usuario.item - self.atk}
+  1. Ataque   |  {usuario.atk + usuario.item}   |    {(usuario.atk - usuario.item)+ self.atk}      |    {usuario.item - self.atk}
   2. Mágica   |  {usuario.mgk + usuario.item}   |    {(usuario.mgk - usuario.item) + self.mgk}      |    {(usuario.item) - self.mgk}
   3. Defesa   |  {usuario.df + usuario.item}   |    {(usuario.df - usuario.item) + self.df}      |    {(usuario.item) - self.df}
   4. Vida     |  {usuario.hp + usuario.item}  |    {(usuario.hp - usuario.item) + self.hp}     |    {(usuario.item) -self.hp}
@@ -61,6 +61,5 @@ nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
 al = Item('Adaga','Ataque',5,6,3,10)
 al.EquiparItem(jogador_principal)
-x=0
 
 ## Valores invertidos -- Arrumar depois é isso ai
