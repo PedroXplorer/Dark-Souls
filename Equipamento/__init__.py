@@ -52,21 +52,47 @@ class Item():
         self.df = df
 
     def EquiparItem(self, usuario):
+        escolha = 0
         if self.tipo == "Arma":
-            print(f'''  Atributo      Atual    Equipando    Diferença
-  1. Ataque   |  {usuario.atk + usuario.item_Atk.atk}   |    {(usuario.atk - usuario.item_Atk.atk)+ self.atk}      |    {usuario.item_Atk.atk - self.atk}
-  2. Mágica   |  {usuario.mgk + usuario.item}   |    {(usuario.mgk - usuario.item) + self.mgk}      |    {(usuario.item) - self.mgk}
-        ''')
+                print(f'''  Atributo      Atual    Equipando    Diferença
+    1. Ataque   |  {usuario.atk + usuario.item_Atk.atk}   |    {(usuario.atk - usuario.item_Atk.atk)+ self.atk}      |    {self.atk - usuario.item_Atk.atk}
+    2. Mágica   |  {usuario.mgk + usuario.item_Atk.mgk}   |    {(usuario.mgk -  usuario.item_Atk.mgk) + self.mgk}      |    {self.mgk - usuario.item_Atk.mgk}
+            ''')
         elif self.tipo == "Armadura":
-            print(f'''  Atributo      Atual    Equipando    Diferença
- 1. Defesa   |  {usuario.df + usuario.item}   |    {(usuario.df - usuario.item) + self.df}      |    {(usuario.item) - self.df}
- 2. Vida     |  {usuario.hp + usuario.item}  |    {(usuario.hp - usuario.item) + self.hp}     |    {(usuario.item) -self.hp}
-''')
-    escolha = input(f"Você encontrou um item, deseja equipa-lo [S/N]: ")
+                print(f'''  Atributo      Atual    Equipando    Diferença
+    1. Defesa   |  {usuario.df + usuario.item_Df.df}   |    {(usuario.df - usuario.item_Df.df) + self.df}      |    {self.df - usuario.item_Df.df}
+    2. Vida     |  {usuario.hp + usuario.item_Df.hp}  |    {(usuario.hp - usuario.item_Df.hp) + self.hp}     |    {self.hp - usuario.item_Df.hp}
+    ''')
+                
+        while escolha != "S" or escolha != 'N':
+            escolha = input(str(f"Você encontrou um item, deseja equipa-lo [S/N]: "))
+            if escolha == 'S' and self.tipo == "Arma":
+                print(f"{usuario.name} trocou o equipamento {usuario.item_Atk.name} pelo equipamento {self.name}\n")
+                usuario.item_Atk = self
+                break
+
+            elif escolha == 'S' and self.tipo == "Armadura":
+                print(f"{usuario.name} trocou o equipamento {usuario.item_Df.name} pelo equipamento {self.name}\n")
+                usuario.item_Df = self
+                break
+
+            elif escolha == 'N':
+                print(f'{usuario.name} descartou o equipamento {self.name}... \n')
+                break
+
+            else :
+                print ('Escolha somente [S/N], tente novamente.\n\n')
+
 
 nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
-al = Item('Adaga',"Arma",5,6,3,10)
+print (f'\nEquipamento Ataque do Usuário: {jogador_principal.item_Atk.name}')
+print (f'Equipameto Defesa Usuário: {jogador_principal.item_Df.name} \n')
+al = Item('Adaga',"Arma",5,6)
+ol = Item('Capacete',"Armadura",mgk =3, df =10)
 al.EquiparItem(jogador_principal)
+ol.EquiparItem(jogador_principal)
 
+print (f'\nEquipamento Ataque do Usuário: {jogador_principal.item_Atk.name}')
+print (f'Equipameto Defesa Usuário: {jogador_principal.item_Df.name} \n')
 ## Valores invertidos -- Arrumar depois é isso ai
