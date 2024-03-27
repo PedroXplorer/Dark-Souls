@@ -41,7 +41,7 @@ class Caracter():
         self.df = df
         self.mgk = mgk
         self.atk = atk
-        
+
 class Item():
     def __init__(self,name, tipo, atk =0, mgk =0 ,hp =0, df = 0 ):
         """
@@ -124,4 +124,4 @@ ol = Item('Capacete',"Armadura",hp = 12, df= 5)
 al.EquiparItem(jogador_principal)
 ol.EquiparItem(jogador_principal)
 
-## Atualizar valores nas batalho (Objetos)
+## Atualizar valores nas b
