@@ -65,6 +65,17 @@ class Item():
         self.df = df
 
     def EquiparItem(self, usuario):
+        """
+                    Criador: PedroXplorer
+
+           Sistema de pegar item ou não
+
+        Args / Parametros:
+        self: item a ser equipado
+        usuario: pessoa que vai receber o item
+        Returns:
+            None
+        """
         escolha = 0
         print (f'''\nInformações do equipamento: 
 NOME: {self.name}      TIPO:   {self.tipo}
