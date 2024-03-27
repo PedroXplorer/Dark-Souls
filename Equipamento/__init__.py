@@ -113,4 +113,4 @@ ol = Item('Capacete',"Armadura",hp = 12, df= 5)
 al.EquiparItem(jogador_principal)
 ol.EquiparItem(jogador_principal)
 
-## Valores invertidos -- Arrumar depois é isso ai
+## Atualizar valores nas batalho (Objetos)
