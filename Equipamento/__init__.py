@@ -31,8 +31,8 @@ class Caracter():
         self.xp = xp
         self.hpi = hpi 
         self.m = m
-        self.item_Atk = Item("Nome Atk ","Arma")
-        self.item_Df = Item("Nome Df ","Armadura")
+        self.item_Atk = Item("Vazio","Arma")
+        self.item_Df = Item("Vazio","Armadura")
 
         self.ouro = ouro
         
@@ -43,7 +43,20 @@ class Caracter():
         self.atk = atk
         
 class Item():
-    def __init__(self,name, tipo, hp =0, atk =0, mgk =0 , df = 0 ):
+    def __init__(self,name, tipo, atk =0, mgk =0 ,hp =0, df = 0 ):
+        """
+                    Criador: PedroXplorer
+
+            Criar itens e gerencia eles
+
+        Args / Parametros:
+        name (str): Nome do equipamento
+        tipo (str): Tipo do equipamento ("Armadura","Arma")
+        atk (int): Dano de Ataque 
+        mgk (int): Dano de Mágica 
+        df (int): Pontos de Defesa
+        hp (int): Pontos de Vida  
+        """
         self.name = name
         self.tipo = tipo
         self.hp = hp
@@ -53,16 +66,24 @@ class Item():
 
     def EquiparItem(self, usuario):
         escolha = 0
+        print (f'''\nInformações do equipamento: 
+NOME: {self.name}      TIPO:   {self.tipo}
+ATK: {self.atk}      MGK: {self.mgk}      DEF: {self.df}       HP: {self.hp} 
+------------------------------------------------''')
         if self.tipo == "Arma":
-                print(f'''  Atributo      Atual    Equipando    Diferença
-    1. Ataque   |  {usuario.atk + usuario.item_Atk.atk}   |    {(usuario.atk - usuario.item_Atk.atk)+ self.atk}      |    {self.atk - usuario.item_Atk.atk}
-    2. Mágica   |  {usuario.mgk + usuario.item_Atk.mgk}   |    {(usuario.mgk -  usuario.item_Atk.mgk) + self.mgk}      |    {self.mgk - usuario.item_Atk.mgk}
-            ''')
+            print(f'''  Atributo      Atual    Equipando    Diferença
+        1. Ataque   |  {usuario.atk + usuario.item_Atk.atk}   |    {(usuario.atk - usuario.item_Atk.atk)+ self.atk}      |    {self.atk - usuario.item_Atk.atk}
+        2. Mágica   |  {usuario.mgk + usuario.item_Atk.mgk}   |    {(usuario.mgk -  usuario.item_Atk.mgk) + self.mgk}      |    {self.mgk - usuario.item_Atk.mgk}
+        3. Defesa   |  {usuario.df + usuario.item_Atk.df}   |    {(usuario.df - usuario.item_Atk.df) + self.df}      |    {self.df - usuario.item_Atk.df}
+        4. Vida     |  {usuario.hp + usuario.item_Atk.hp}  |    {(usuario.hp - usuario.item_Atk.hp) + self.hp}     |    {self.hp - usuario.item_Atk.hp}
+        ''')
         elif self.tipo == "Armadura":
-                print(f'''  Atributo      Atual    Equipando    Diferença
-    1. Defesa   |  {usuario.df + usuario.item_Df.df}   |    {(usuario.df - usuario.item_Df.df) + self.df}      |    {self.df - usuario.item_Df.df}
-    2. Vida     |  {usuario.hp + usuario.item_Df.hp}  |    {(usuario.hp - usuario.item_Df.hp) + self.hp}     |    {self.hp - usuario.item_Df.hp}
-    ''')
+            print(f'''  Atributo      Atual    Equipando    Diferença
+        1. Ataque   |  {usuario.atk + usuario.item_Df.atk}   |    {(usuario.atk - usuario.item_Df.atk)+ self.atk}      |    {self.atk - usuario.item_Df.atk}
+        2. Mágica   |  {usuario.mgk + usuario.item_Df.mgk}   |    {(usuario.mgk -  usuario.item_Df.mgk) + self.mgk}      |    {self.mgk - usuario.item_Df.mgk}
+        3. Defesa   |  {usuario.df + usuario.item_Df.df}   |    {(usuario.df - usuario.item_Df.df) + self.df}      |    {self.df - usuario.item_Df.df}
+        4. Vida     |  {usuario.hp + usuario.item_Df.hp}  |    {(usuario.hp - usuario.item_Df.hp) + self.hp}     |    {self.hp - usuario.item_Df.hp}
+        ''')
                 
         while escolha != "S" or escolha != 'N':
             escolha = input(str(f"Você encontrou um item, deseja equipa-lo [S/N]: "))
@@ -86,13 +107,10 @@ class Item():
 
 nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
-print (f'\nEquipamento Ataque do Usuário: {jogador_principal.item_Atk.name}')
-print (f'Equipameto Defesa Usuário: {jogador_principal.item_Df.name} \n')
-al = Item('Adaga',"Arma",5,6)
-ol = Item('Capacete',"Armadura",mgk =3, df =10)
+
+al = Item('Adaga Envenenada',"Arma",5,3)
+ol = Item('Capacete',"Armadura",hp = 12, df= 5)
 al.EquiparItem(jogador_principal)
 ol.EquiparItem(jogador_principal)
 
-print (f'\nEquipamento Ataque do Usuário: {jogador_principal.item_Atk.name}')
-print (f'Equipameto Defesa Usuário: {jogador_principal.item_Df.name} \n')
 ## Valores invertidos -- Arrumar depois é isso ai
