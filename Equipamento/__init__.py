@@ -1,47 +1,4 @@
 
-
-class Caracter():
-    def __init__(self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0,item_Atk =0,item_Df = 0):
-        """
-                    Criador: PedroXplorer
-
-            Criar um novo personagem.
-
-        Args / Parametros:
-            name (str): O nome do personagem.
-            hpi (int): Pontos de vida inicial.
-            hp (int): Pontos de vida.
-            atk (int): Valor do ataque.
-            mgk (int): Valor da magia.
-            df (int): Valor da defesa.
-            ouro (int): Quantidade de ouro do personagem.
-            php (int): Pocoes de vida.
-            pmk (int): Pocoes de magia.
-            lv (int): Nivel do personagem.
-            xp (int): Pontos de experiencia do personagem.
-            m (int): Pontos de melhoria para distribuir ao subir de nivel.
-
-        """
-    
-        self.name = name
-        self.hp = hp
-        self.php = php
-        self.pmk = pmk
-        self.lv  = lv
-        self.xp = xp
-        self.hpi = hpi 
-        self.m = m
-        self.item_Atk = Item("Vazio","Arma")
-        self.item_Df = Item("Vazio","Armadura")
-
-        self.ouro = ouro
-        
-        self.cont_mgk = 5
-        self.cont_p = php + pmk
-        self.df = df
-        self.mgk = mgk
-        self.atk = atk
-
 class Item():
     def __init__(self,name, tipo, atk =0, mgk =0 ,hp =0, df = 0 ):
         """
@@ -114,14 +71,4 @@ ATK: {self.atk}      MGK: {self.mgk}      DEF: {self.df}       HP: {self.hp}
 
             else :
                 print ('Escolha somente [S/N], tente novamente.\n\n')
-
-
-nome_jogador = input("\nDigite o nome do seu personagem: ")
-jogador_principal = Caracter(nome_jogador,100, 100, 20, 20, 10, 0, 2,2)
-
-al = Item('Adaga Envenenada',"Arma",5,3)
-ol = Item('Capacete',"Armadura",hp = 12, df= 5)
-al.EquiparItem(jogador_principal)
-ol.EquiparItem(jogador_principal)
-
 ## Atualizar valores nas b
