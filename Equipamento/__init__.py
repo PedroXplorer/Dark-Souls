@@ -58,11 +58,19 @@ ATK: {self.atk}      MGK: {self.mgk}      DEF: {self.df}       HP: {self.hp}
             if escolha == 'S' and self.tipo == "Arma":
                 print(f"{usuario.name} trocou o equipamento {usuario.item_Atk.name} pelo equipamento {self.name}\n")
                 usuario.item_Atk = self
+                usuario.df = (usuario.df - usuario.item_Atk.df) + self.df # colocar que é igual (us.df - us.it_Df.df -  us.it_Atk.df ) + (o item encontrado)
+                usuario.mgk = (usuario.mgk - usuario.item_Atk.mgk) + self.mgk
+                usuario.atk = (usuario.atk - usuario.item_Atk.atk) + self.atk
+                usuario.hp = (usuario.hp - usuario.item_Atk.hp) + self.hp
                 break
 
             elif escolha == 'S' and self.tipo == "Armadura":
                 print(f"{usuario.name} trocou o equipamento {usuario.item_Df.name} pelo equipamento {self.name}\n")
                 usuario.item_Df = self
+                usuario.df = (usuario.df - usuario.item_Df.df) + self.df # colocar que é igual (us.df - us.it_Df.df -  us.it_Atk.df ) + (o item encontrado)
+                usuario.mgk = (usuario.mgk - usuario.item_Df.mgk) + self.mgk
+                usuario.atk = (usuario.atk - usuario.item_Df.atk) + self.atk
+                usuario.hp = (usuario.hp - usuario.item_Df.hp) + self.hp
                 break
 
             elif escolha == 'N':

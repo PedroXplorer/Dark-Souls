@@ -30,10 +30,10 @@ class Caracter():
         self.pmk = pmk
         self.lv  = lv
         self.xp = xp
-        self.hpi = hpi 
-        self.m = 2 # m
+        self.m = m
         self.item_Atk = item_Atk =  Item("Vazio","Arma")
         self.item_Df = item_Df = Item("Vazio","Armadura")
+        self.hpi = hpi + (self.item_Atk.hp + self.item_Df.hp)  
 
         self.ouro = ouro
         
@@ -68,10 +68,10 @@ class Caracter():
         if self.xp >= marca:
             self.xp = self.xp - marca
             self.lv = self.lv + 1
-            df = self.df + (self.item_Atk.df + self.item_Df.df)
-            hp = self.hpi + (self.item_Atk.hp + self.item_Df.hp)
-            mgk = self.mgk + (self.item_Atk.mgk + self.item_Df.mgk)
-            atk = self.atk + (self.item_Atk.atk + self.item_Df.atk)
+            df = self.df 
+            hp = self.hpi
+            mgk = self.mgk 
+            atk = self.atk 
 
             print (f' Parabéns, {self.name} subiu para o level {self.lv}\nEscolha os atributos para aumentar.')
             escolha = 0 
@@ -163,7 +163,7 @@ Escolha a opção (Se não quiser usa-los - Q): '''))
         if dano <= 0 :
             dano = 0
         else: 
-            alvo.hp = (alvo.hp  + alvo.df) - dano
+            alvo.hp = alvo.hp - dano
             
         if alvo.hp <= 0:
             alvo.hp = 0
@@ -181,7 +181,7 @@ Escolha a opção (Se não quiser usa-los - Q): '''))
             int: O dano causado.
         """
         if self.cont_mgk > 0:
-            alvo.hp = (alvo.hp + alvo.df) - (self.mgk)
+            alvo.hp = alvo.hp - self.mgk
             if alvo.hp <= 0:
                 alvo.hp = 0      
             return self.mgk 
