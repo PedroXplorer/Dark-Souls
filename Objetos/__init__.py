@@ -31,13 +31,13 @@ class Caracter():
         self.lv  = lv
         self.xp = xp
         self.m = m
-        self.item_Atk = item_Atk =  Item("Vazio","Arma")
-        self.item_Df = item_Df = Item("Vazio","Armadura")
+        self.item_Atk = item_Atk =  Item("Vazio","Arma",0,0,0,0)
+        self.item_Df = item_Df = Item("Vazio","Armadura",0,0,0,0)
         self.hpi = hpi + (self.item_Atk.hp + self.item_Df.hp)  
 
         self.ouro = ouro
         
-        self.cont_mgk = 5
+        self.cont_mgk = 3
         self.cont_p = php + pmk
         self.df = df + (self.item_Atk.df + self.item_Df.df)
         self.mgk = mgk + (self.item_Atk.mgk + self.item_Df.mgk)
@@ -365,3 +365,8 @@ def batalha(jogador, inimigo):
     else:
         print(f"{inimigo.name} foi derrotado. Você venceu!")
         jogador.Level_up(inimigo)
+
+RatoGigante = Inimigo("Rato Gigante",12,11,3,1,5,randint(3,4))
+Slime = Inimigo("Slime",15,12,4,1,5,randint(3,6))
+Morcego = Inimigo("Morcego",13,11,3,1,5,randint(2,4))
+Aguia = Inimigo("Águia",18,15,5,1,5,randint(10,11))

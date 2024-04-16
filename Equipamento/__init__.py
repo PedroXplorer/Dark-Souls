@@ -79,4 +79,13 @@ ATK: {self.atk}      MGK: {self.mgk}      DEF: {self.df}       HP: {self.hp}
 
             else :
                 print ('Escolha somente [S/N], tente novamente.\n\n')
+
+Adaga = Item("Adaga","Arma", atk=3)
+ArcoFraco = Item("Arco Fraco","Arma", atk=5)
+FoiceDupla = Item("Foice Dupla","Arma", atk=7)
+Arco = Item("Arco","Arma", atk=8)
+ArcoForte = Item("Arco Forte","Arma", atk=12)
+Espada = Item("Espada","Arma", atk=15)
+Machado = Item("Machado","Arma", atk=15)
+
 ## Atualizar valores nas b
