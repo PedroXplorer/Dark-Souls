@@ -1,53 +1,38 @@
-# Ordem de organizar Personagem 
-# --  self, name,hpi, hp, atk, mgk, df, ouro, php = 0, pmk = 0,lv =0, xp =0, m= 0
 
-# Ordem de organizar inimigos
-# --   name, hp, atk, df,lv,ouro, xp = 0
-
-#Ordem de organizar itens
-# -- name, tipo, atk =0, mgk =0 ,hp =0, df = 0 
-
-# Código principal do programa, utiliza funções da pasta 'Objetos' e 'Equipamento'
-
-# -----------------------------------------------------------------------------------------
-
-import os
 from time import sleep
-from random import randint
-from Objetos import *
-from Equipamento import *
+import os
 
 print ()
 os.system("cls")
-time.sleep(1.75)
+sleep(1.75)
 print ('''
                                          ╔════════════════╗
-             LOADING.                    ┃ ▁▂      10%    |                 
+             LOADING...                  ┃ ▁▂      10%    |                 
                                          ╚════════════════╝
  ''',flush=True)
-time.sleep(1.75)
+sleep(1.75)
 os.system("cls")
 print ('''
                                          ╔════════════════╗
-             LOADING..                   ┃ ▁▂▃▅    50%    |                 
+             LOADING...                  ┃ ▁▂▃▅    50%    |                 
                                          ╚════════════════╝
  ''',flush=True)
-time.sleep(1.75)
+sleep(1.75)
 os.system("cls")
 print ('''
                                          ╔════════════════╗
              LOADING...                  ┃ ▁▂▃▅▆   80%    |                 
                                          ╚════════════════╝
  ''',flush=True)
-time.sleep(1.75)
+sleep(1.75)
 os.system("cls")
 print ('''
                                          ╔════════════════╗
-             LOADING.                    ┃ ▁▂▃▅▆▇ 100%    |                 
+             LOADING...                  ┃ ▁▂▃▅▆▇ 100%    |                 
                                          ╚════════════════╝
  ''',flush=True)
 
-time.sleep(1.75)
+sleep(1.75)
 os.system("cls")
 
 
@@ -57,7 +42,7 @@ menu = (''' --------------------------------------------------------------------
 
              █▄██▄█                  █▄██▄█                  █▄██▄█                  █▄██▄█                  █▄██
     █▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄██▄█▄█▄█▄█▐█ ╔═════════════════════╗ ██▌█▄█▄█▄█▄██▄█▄█▄█▄█▐█┼██▌█▄█▄█▄█▄██▄█▄█▄█▄█▐█┼█
-    ███┼█████▐████▌█████┼██████┼█████▐█ <      Retro Quest    > ██▌█████┼██████┼█████▐████▌█████┼██████┼█████▐███
+    ███┼█████▐████▌█████┼██████┼█████▐█ <    Retro Quest      > ██▌█████┼██████┼█████▐████▌█████┼██████┼█████▐███
     █████████▐████▌██████████████████▐█ ╚═════════════════════╝ ██▌██████████████████▐████▌██████████████████▐███
     █████████▐████▌██████████████████▐████▌██████████████████▐████▌██████████████████▐████▌██████████████████▐███
        
@@ -65,14 +50,9 @@ menu = (''' --------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------------
     >> (c) Pedro Henrique Alves Martins .Todos os direitos reservados.
             
-    \033[0;0mMinhas redes sociais:
-        Instagem: \033[94mhttps://www.instagram.com/pdrhnrqalvesmartins/\033[0;0m
-        Steam (Jogos): \033[94mhttps://steamcommunity.com/profiles/76561199114894915\033[0;0m
-    Meus GitHubs:
-        PedroXplorer: \033[94mhttps://github.com/PedroXplorer/PedroXplorer\033[0;0m  
-        Germinare: \033[94mhttps://github.com/Pedro-GerminareT3ch\033[0;0m
+    \033[0;0mMeu instagram: \033[94mhttps://www.instagram.com/pdrhnrqalvesmartins/\033[0;0m
+    Meu GitHub: \033[94mhttps://github.com/PedroXplorer/PedroXplorer\033[0;0m  
     Meu site: \033[94mhttps://8049170068179271.carrd.co/\033[0;0m
-
 >> Recomendável ver as informações sobre o jogo antes de começar a jogar.
 
 \033[93m \033[1m        -- [S] -- \033[0;0m   Começar o jogo
@@ -89,75 +69,51 @@ menu = (''' --------------------------------------------------------------------
 ''')
 
 os.system('cls')
+
 print (menu)
 
-e = str(input(">> Sua opção: \033[93m\033[1m")) 
-print("\033[0;0m")
+e = str(input(">> Sua opção: ")) 
 
 e = e.strip()
 while True:
 ##  Sair
-    if e in ("Q","q"):
-        print("Fechando o programa...")
-        time.sleep(1.75)
+    if e in "Qq":
+        sleep(1.75)
         print ("")
         print ("")
         quit ()
-
-## Mostrar Saves
-    if e in ("R","r"):
-        print("""
-        Sistema de saves ainda está em andamento. [Provavelmente nunca vai existir kkkkkk]
-
-""")
-        str(input("     [ Pressione ENTER ]"))
-        time.sleep(1.75)
-        os.system('cls')
-        print (menu)
-        e = str(input(">> Sua opção: \033[93m\033[1m")) 
-        print("\033[0;0m")
-
-
-
+    
 ## Começar o jogo  
-    elif e in  ("S","s"):
-        time.sleep(1.75)
+    elif e in "Ss":
+        sleep(1.75)
         os.system('cls') 
         print ("")
         break
+        break
         
 ## Mostrar Créditos
-    elif e in  ("M","m"):
-        time.sleep(1.75)
+    elif e in "Mm":
+        sleep(1.75)
         os.system('cls')
         print ("")
-        print ("""               Criador: Pedro Henrique 
-               Desenvolvedor: Pedro Henrique
-               Sistema: Pedro Henrique
-               Desing Gráfico: Pedro Henrique
-               História do Jogo: ChatGPT
-               """)
+        print ("       Criador: Pedro Henrique ")
         print ("")
         str(input("     [ Pressione ENTER ]"))
         print ("")
-        time.sleep(1.75)
+        sleep(1.75)
         os.system('cls')
         print (menu)
-        e = str(input(">> Sua opção:\033[93m\033[1m ")) 
-        print("\033[0;0m")
-
+        e = str(input(">> Sua opção: ")) 
 
 
 ## Informações do jogo
-    elif e in  ("I","i"):
-        time.sleep(1.75)
+    elif e in "Ii":
+        sleep(1.75)
         os.system('cls')
         print ('''
  
         Funcionamento do jogo:       
-               
-               >> O jogo é baseado em MUDs (Multi-User-Dungeon) que  é um sugênero de RPG eletrônico multijogador, que normalmente é executado em um sistema online BBS ou em um servidor na Internet. Aviso, o jogo não é online.
-
+         
                >> O jogo normalmente te dará informações sobre algum acontecimento e você indicara como o seu avatar vai reagir ao ocorrido, dependendo da forma que você agir com os personagens e suas ações é possível obter um final diferente, portanto, tome cuidado com suas escolhas feitas ao longo dessa aventura.
 
                >> Use apenas as primeiras letras das escolhas para se referir a elas, Exemplo.
@@ -181,17 +137,16 @@ while True:
 
 ''')
         str(input("     [ Pressione ENTER ]"))
-        time.sleep(1.75)
+        sleep(1.75)
         os.system('cls')
         print (menu)
-        e = str(input(">> Sua opção: \033[93m\033[1m")) 
-        print("\033[0;0m")
+        e = str(input(">> Sua opção: ")) 
 
 
 
 ## Linguagem
-    elif e in ("L","l"):
-        time.sleep(1.75)
+    elif e in "Ll":
+        sleep(1.75)
         os.system('cls')
         print ('''
         
@@ -202,29 +157,24 @@ while True:
         str(input("   [ Pressione ENTER ]"))
         os.system('cls')
         print (menu)
-        e = str(input(">> Sua opção: \033[93m\033[1m")) 
-        print("\033[0;0m")
-
+        e = str(input(">> Sua opção: ")) 
 
 
     else:
         print ()
         print (" Insira uma opção válida... ")
-        time.sleep(1)
+        sleep(1)
         os.system('cls')
         print (menu)
-        e = str(input(">> Sua opção: \033[93m\033[1m")) 
-        print("\033[0;0m")
+        e = str(input(">> Sua opção: ")) 
 
 
 
+# ------------------------------------------------------------------------------------------------
 
-nome_jogador = input("\nDigite o nome do seu personagem: ")
-jogador_principal = Caracter(nome_jogador,35, 35, 8, 10, 8, 0, 2,2)
-
-# ----------------------------------------------------------------------------------------
-
+## Começo 
 import time
+
 
 def introducao():
     print("Nos Reinos Esquecidos, um continente repleto de magia, criaturas misteriosas e perigos inimagináveis, uma antiga profecia ressurge.")
@@ -239,27 +189,25 @@ def introducao():
 def capitulo1():
     print("\nCapítulo 1: O Despertar das Profecias")
     time.sleep(2)
-    print(f"{jogador_principal.name} começa em uma pequena vila, onde coisas estranhas começam a acontecer.")
+    print("Os jogadores começam em uma pequena vila, onde coisas estranhas começam a acontecer.")
     time.sleep(2)
-    print(f"Uma série de eventos misteriosos, como desaparecimentos inexplicáveis e o surgimento de criaturas sombrias, leva {jogador_principal.name} a pensar que algo está ameaçando a paz nos Reinos Esquecidos.")
+    print("Uma série de eventos misteriosos, como desaparecimentos inexplicáveis e o surgimento de criaturas sombrias, levam os heróis a descobrir que algo está ameaçando a paz nos Reinos Esquecidos.")
     time.sleep(2)
-    print("Você foi recrutado(a) por um sábio ancião que revela a profecia dos Relicários Perdidos e os encarrega de encontrar e proteger esses artefatos antigos.")
+    print("Eles são recrutados por um sábio ancião que revela a profecia dos Relicários Perdidos e os encarrega de encontrar e proteger esses artefatos antigos.")
     time.sleep(2)
 
 def capitulo2():
     print("\nCapítulo 2: A Busca pelos Relicários")
     time.sleep(2)
-    print("Você embarca em uma jornada épica através de florestas assombradas, montanhas perigosas e cidades corrompidas, enfrentando inúmeros desafios pelo caminho.")
+    print("Os jogadores embarcam em uma jornada épica através de florestas assombradas, montanhas perigosas e cidades corrompidas, enfrentando inúmeros desafios pelo caminho.")
     time.sleep(2)
-    print("Ao andar por uma esquina você é atacado(a)")
-    batalha(jogador_principal,Slime) # Ladrão 1
-    batalha(jogador_principal,Slime) #Ladrão 2
+    print("Eles encontram pistas e aliados improváveis, mas também enfrentam adversários poderosos que desejam os relicários para seus próprios fins nefastos.")
     time.sleep(2)
 
 def capitulo3():
     print("\nCapítulo 3: Revelações e Traições")
     time.sleep(2)
-    print(f"Enquanto {jogador_principal.name} se aproximam de encontrar o primeiro Relicário, eles descobrem segredos sombrios sobre a história dos Reinos Esquecidos e aqueles que governam sobre eles.")
+    print("Enquanto os heróis se aproximam de encontrar o primeiro Relicário, eles descobrem segredos sombrios sobre a história dos Reinos Esquecidos e aqueles que governam sobre eles.")
     time.sleep(2)
     print("Traições dentro do próprio grupo e alianças inesperadas desafiam sua lealdade e determinação.")
     time.sleep(2)
@@ -382,15 +330,15 @@ def historia():
         final_tragico()
 
     capitulo6()
-    if escolha_sim_ou_nao("Você está disposto a enfrentar as Provações Elementais para alcançar o próximo Relicário?"):
+    if escolha_sim_ou_nao("Você está disposto(a) a enfrentar as Provações Elementais para alcançar o próximo Relicário?"):
         capitulo7()
         if escolha_sim_ou_nao("Você busca justiça ou perdão para o traidor dentro do grupo?"):
             capitulo8()
-            if escolha_sim_ou_nao("Você está pronto para enfrentar o guardião da Cidadela das Sombras?"):
+            if escolha_sim_ou_nao("Você está pronto(a) para enfrentar o guardião da Cidadela das Sombras?"):
                 capitulo9()
-                if escolha_sim_ou_nao("Você está preparado para enfrentar o Lich e seus exércitos?"):
+                if escolha_sim_ou_nao("Você está preparado(a) para enfrentar o Lich e seus exércitos?"):
                     capitulo10()
-                    if escolha_sim_ou_nao("Você está pronto para despertar a Besta e recuperar o último Relicário?"):
+                    if escolha_sim_ou_nao("Você está pronto(a) para despertar a Besta e recuperar o último Relicário?"):
                         capitulo11()
                         final_feliz()
                     else:
@@ -406,4 +354,8 @@ def historia():
 
     capitulo12()
 
-historia()
+if __name__ == "__main__":
+    historia()
+
+
+

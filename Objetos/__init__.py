@@ -302,7 +302,7 @@ def batalha(jogador, inimigo):
         Returns:
             None
     """
-    print (f'{jogador.name} vs {inimigo.name}')
+    print (f'\n     {jogador.name} vs {inimigo.name}')
 
     while jogador.hp > 0 and inimigo.hp > 0:
         print ('\nOpções:')
@@ -355,13 +355,19 @@ def batalha(jogador, inimigo):
 
         dano_inimigo = inimigo.atacar(jogador)
         print(f"{inimigo.name} atacou {jogador.name} causando {dano_inimigo} de dano.")
+        if jogador.hp <= 0:
+            jogador.hp = 0
 
         exibir_status(jogador, inimigo)
 
         time.sleep(1)
 
     if jogador.hp <= 0:
+        jogador.hp = 0
         print(f"{jogador.name} foi derrotado. Game Over.")
+        print(f"Não desista, Tente Novamente.")
+        quit()
+
     else:
         print(f"{inimigo.name} foi derrotado. Você venceu!")
         jogador.Level_up(inimigo)
