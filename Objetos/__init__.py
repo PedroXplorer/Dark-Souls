@@ -376,3 +376,40 @@ RatoGigante = Inimigo("Rato Gigante",12,11,3,1,5,randint(3,4))
 Slime = Inimigo("Slime",15,12,4,1,5,randint(3,6))
 Morcego = Inimigo("Morcego",13,11,3,1,5,randint(2,4))
 Aguia = Inimigo("Águia",18,15,5,1,5,randint(10,11))
+
+
+
+
+
+def leiaInt(msg):
+    while True:
+        try:
+            n = int(input(msg))
+        except (ValueError,TypeError):
+            print("\033[91mERRO: por favor,digite uma número inteiro válido\033[0m")
+            continue
+        except (KeyboardInterrupt):
+            print("\033[91mUsúario preferiu não digitar esse número\033[0m")
+            return 0
+        else:
+            return n
+
+def linha(tam = 42):    
+    return "-"*tam
+
+def cabecalhos(txt):
+    print(linha())
+    print(txt.center(42))
+    print(linha())
+
+def menu (lista = list()):
+    cabecalhos('MENU ARQUIVO')
+    c = 0
+    for item in lista:
+        print(f'[{c}] - {item} ')
+        c += 1
+    print (linha())
+    opc = leiaInt('Sua Opção: ')
+    return opc
+
+

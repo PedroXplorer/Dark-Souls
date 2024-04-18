@@ -16,6 +16,9 @@ from time import sleep
 from random import randint
 from Objetos import *
 from Equipamento import *
+from Sistema_de_Save import *
+
+parte = -1
 
 print ()
 os.system("cls")
@@ -43,7 +46,7 @@ time.sleep(1.75)
 os.system("cls")
 print ('''
                                          ╔════════════════╗
-             LOADING.                    ┃ ▁▂▃▅▆▇ 100%    |                 
+             LOADING.                    ┃ ▁▂▃▅▆▇  100%   |                 
                                          ╚════════════════╝
  ''',flush=True)
 
@@ -77,7 +80,7 @@ menu = (''' --------------------------------------------------------------------
 
 \033[93m \033[1m        -- [S] -- \033[0;0m   Começar o jogo
               
-\033[93m \033[1m        -- [R] -- \033[0;0m   Mostrar Saves
+\033[93m \033[1m        -- [R] -- \033[0;0m   Saves
 
 \033[93m \033[1m        -- [M] -- \033[0;0m   Mostrar Créditos
 
@@ -94,6 +97,7 @@ print (menu)
 e = str(input(">> Sua opção: \033[93m\033[1m")) 
 print("\033[0;0m")
 
+arq = "saves.txt"
 e = e.strip()
 while True:
 ##  Sair
@@ -106,10 +110,41 @@ while True:
 
 ## Mostrar Saves
     if e in ("R","r"):
+        time.sleep(1.75)
+        os.system('cls')
         print("""
-        Sistema de saves ainda está em andamento. [Provavelmente nunca vai existir kkkkkk]
-
+        >> O Sistema de saves funciona criando um arquivo.txt (saves.txt) e colocando as informações de que parte do jogo você parou, ainda está em andamento. 
+        >> As informações do save serve para guardar o seu progresso, pode apaga-lo, assim você reseta o seu save.
+        >> Se você alterar alguma informação dentro dele seu save pode corromper, então tome cuidado.
 """)
+        ## FAZER MENU GUANABARA
+        while True:
+            minha_lista = []
+            minha_lista.append('Criar novo save')
+            minha_lista.append('Escolher save')
+            minha_lista.append('Sair')
+
+            resposta = menu(minha_lista)
+            if resposta == 1:
+                if arquivoExiste(arq):
+                    print ("Arquivo 'saves.txt' já existe.\n")
+                    print("")
+                    lerArquivo(arq)
+                    print("")
+
+                elif not arquivoExiste(arq):               
+                    criarArquivo(arq)
+                    lerArquivo(arq)
+                    print("")
+            elif resposta == 2:
+                print("Opção2")
+            elif resposta == 3:
+                print('Saindo...')
+                break             
+            else:
+                print("ERRO! Digite uma opção válida")   
+
+
         str(input("     [ Pressione ENTER ]"))
         time.sleep(1.75)
         os.system('cls')
@@ -227,6 +262,7 @@ jogador_principal = Caracter(nome_jogador,35, 35, 8, 10, 8, 0, 2,2)
 import time
 
 def introducao():
+    parte = 0
     print("Nos Reinos Esquecidos, um continente repleto de magia, criaturas misteriosas e perigos inimagináveis, uma antiga profecia ressurge.")
     time.sleep(2)
     print("Diz-se que há séculos atrás, quatro relicários sagrados foram criados para proteger o mundo da escuridão.")
@@ -237,6 +273,7 @@ def introducao():
     time.sleep(2)
 
 def capitulo1():
+    parte =1
     print("\nCapítulo 1: O Despertar das Profecias")
     time.sleep(2)
     print(f"{jogador_principal.name} começa em uma pequena vila, onde coisas estranhas começam a acontecer.")
@@ -247,6 +284,7 @@ def capitulo1():
     time.sleep(2)
 
 def capitulo2():
+    parte =2
     print("\nCapítulo 2: A Busca pelos Relicários")
     time.sleep(2)
     print("Você embarca em uma jornada épica através de florestas assombradas, montanhas perigosas e cidades corrompidas, enfrentando inúmeros desafios pelo caminho.")
@@ -257,6 +295,7 @@ def capitulo2():
     time.sleep(2)
 
 def capitulo3():
+    parte =3
     print("\nCapítulo 3: Revelações e Traições")
     time.sleep(2)
     print(f"Enquanto {jogador_principal.name} se aproximam de encontrar o primeiro Relicário, eles descobrem segredos sombrios sobre a história dos Reinos Esquecidos e aqueles que governam sobre eles.")
@@ -265,6 +304,7 @@ def capitulo3():
     time.sleep(2)
 
 def capitulo4():
+    parte = 4
     print("\nCapítulo 4: O Confronto Final")
     time.sleep(2)
     print("Após superar todos os obstáculos, os jogadores finalmente localizam os quatro Relicários.")
@@ -298,6 +338,7 @@ def final_tragico():
     print("O mundo agora enfrenta uma era de trevas e desespero.")
 
 def capitulo5():
+    parte = 5
     print("\nCapítulo 5: O Renascimento dos Reinos Esquecidos")
     time.sleep(2)
     print("Com a ajuda dos Relicários e sua coragem, os jogadores triunfam sobre o mal e restauram a paz nos Reinos Esquecidos.")
@@ -307,6 +348,7 @@ def capitulo5():
     print("Os heróis são celebrados como lendas e o continente se prepara para uma nova era de prosperidade e harmonia.")
 
 def capitulo6():
+    parte = 6
     print("\nCapítulo 6: As Provações Elementais")
     time.sleep(2)
     print("Antes que os heróis possam alcançar o próximo Relicário, eles são desafiados por uma série de provações elementais, cada uma representando um dos quatro elementos primordiais: terra, água, fogo e ar.")
@@ -314,6 +356,7 @@ def capitulo6():
     print("Cada desafio testa não apenas suas habilidades de combate, mas também sua sabedoria e habilidades mágicas.")
 
 def capitulo7():
+    parte =7
     print("\nCapítulo 7: A Trilha da Traição")
     time.sleep(2)
     print("Uma traição inesperada dentro do grupo de heróis os leva a uma busca por um antigo aliado que se voltou para o lado das trevas.")
@@ -321,6 +364,7 @@ def capitulo7():
     print("Enquanto viajam por terras distantes, eles encontram pistas sobre os motivos por trás da traição e lutam para decidir se devem buscar justiça ou perdão.")
 
 def capitulo8():
+    parte = 8
     print("\nCapítulo 8: A Cidadela das Sombras")
     time.sleep(2)
     print("Os jogadores descobrem uma antiga cidadela nas profundezas de uma floresta proibida, onde uma raça ancestral de criaturas das sombras guarda o próximo Relicário.")
@@ -328,6 +372,7 @@ def capitulo8():
     print("Para alcançá-lo, eles devem atravessar os corredores escuros da fortaleza e enfrentar o poderoso guardião que o protege.")
 
 def capitulo9():
+    parte =9
     print("\nCapítulo 9: A Ascensão do Lich")
     time.sleep(2)
     print("Enquanto os heróis se aproximam do terceiro Relicário, eles descobrem que um lich poderoso está tentando subir ao poder.")
@@ -337,6 +382,7 @@ def capitulo9():
     print("Eles devem impedir seus planos malignos antes que seja tarde demais, enfrentando seus exércitos de esqueletos e fantasmas.")
 
 def capitulo10():
+    parte = 10
     print("\nCapítulo 10: O Despertar da Besta")
     time.sleep(2)
     print("O último Relicário está escondido em uma ilha remota, habitada por uma antiga besta lendária que dorme há séculos.")
@@ -346,6 +392,7 @@ def capitulo10():
     print("No entanto, eles logo descobrem que despertar a fera pode ter consequências catastróficas para o mundo.")
 
 def capitulo11():
+    parte = 11
     print("\nCapítulo 11: O Julgamento Final")
     time.sleep(2)
     print("Com os quatro Relicários finalmente reunidos, os heróis enfrentam o antagonista final em uma batalha épica que determinará o destino dos Reinos Esquecidos.")
@@ -353,6 +400,7 @@ def capitulo11():
     print("Eles devem usar todas as suas habilidades, aliados e sabedoria para derrotar o mal de uma vez por todas e restaurar a paz no mundo.")
 
 def capitulo12():
+    parte = 12
     print("\nCapítulo 12: O Epílogo")
     time.sleep(2)
     print("Com o mal derrotado e os Reinos Esquecidos seguros mais uma vez, os heróis se separam para seguir seus próprios caminhos.")
