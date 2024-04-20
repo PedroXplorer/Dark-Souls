@@ -1,7 +1,7 @@
 from tech import *
 from arquivo import *
 
-arq = 'CADASTROS_PESSOAS.txt'
+arq = 'CADASTROS_PESSOAS2.txt'
 
 if arquivoExiste(arq):
     print(">> Arquivo encontrado com sucesso!")

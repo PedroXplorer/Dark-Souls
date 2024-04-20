@@ -80,7 +80,7 @@ menu = (''' --------------------------------------------------------------------
 
 \033[93m \033[1m        -- [S] -- \033[0;0m   Começar o jogo
               
-\033[93m \033[1m        -- [R] -- \033[0;0m   Saves
+\033[93m \033[1m        -- [R] -- \033[0;0m   Sistema de Saves
 
 \033[93m \033[1m        -- [M] -- \033[0;0m   Mostrar Créditos
 
@@ -97,7 +97,6 @@ print (menu)
 e = str(input(">> Sua opção: \033[93m\033[1m")) 
 print("\033[0;0m")
 
-arq = "saves.txt"
 e = e.strip()
 while True:
 ##  Sair
@@ -114,37 +113,98 @@ while True:
         os.system('cls')
         print("""
         >> O Sistema de saves funciona criando um arquivo.txt (saves.txt) e colocando as informações de que parte do jogo você parou, ainda está em andamento. 
-        >> As informações do save serve para guardar o seu progresso, pode apaga-lo, assim você reseta o seu save.
-        >> Se você alterar alguma informação dentro dele seu save pode corromper, então tome cuidado.
+        >> As informações do save serve para guardar o seu progresso, para resetar os seus saves, apague o arquivo ou as suas informações.
+        >> Se você for alterar alguma informação dentro dele seu save pode corromper, então tome cuidado.
 """)
-        ## FAZER MENU GUANABARA
+        arq = 'save.txt'
+
+        if arquivoExiste(arq):
+            print(">> Arquivo encontrado com sucesso!")
+        else:
+            print (f'>> Arquivo {arq} não encontrado')
+            criarArquivo(arq)
+            print (f'\n>> Arquivo {arq} criado com sucesso!')
+
         while True:
-            minha_lista = []
-            minha_lista.append('Criar novo save')
-            minha_lista.append('Escolher save')
-            minha_lista.append('Sair')
+            lst = ['Ver todos os saves','Cadastrar novo save','Deletar um save','Selecionar save','Sair do sistema']
+            print ()
+            lin('SISTEMA DE SAVE')
+            l = 0
+            k = len(lst)
+            for c in lst:
+                l = l + 1 
+                if l == k:
+                    print (f'[{l}] -  {c}')
+                else:
+                    print (f'[{l}] -  {c}')
+            try:
+                scl = (input("Sua Opção: "))
 
-            resposta = menu(minha_lista)
-            if resposta == 1:
-                if arquivoExiste(arq):
-                    print ("Arquivo 'saves.txt' já existe.\n")
-                    print("")
-                    lerArquivo(arq)
-                    print("")
+            except:
+                print ()
+                lin('Saindo do sistema... Até logo!')
+                print ()
+                quit()
 
-                elif not arquivoExiste(arq):               
-                    criarArquivo(arq)
-                    lerArquivo(arq)
-                    print("")
-            elif resposta == 2:
-                print("Opção2")
-            elif resposta == 3:
-                print('Saindo...')
-                break             
             else:
-                print("ERRO! Digite uma opção válida")   
+                while scl != '1' and scl != '2' and scl != '3' and scl != '4' and scl != '5':
+                    print("\033[91mERRO! Digite uma opção válida.\033[0;0m")
 
+                    try:
+                        scl = (input("Sua Opção: "))
+                    except:
+                        print ()
+                        lin('Saindo do sistema... Até logo!')
+                        print ()
+                        quit()
 
+                if scl == "1":
+                    lerArquivo(arq)
+
+                elif scl == "2":
+                    lin('NOVO SAVE')
+                    nome = input("Nome: ")
+                    while nome == "" or nome == '':
+                        print("\033[91mERRO! Digite algum nome.\033[0;0m")
+                        nome = input("Nome: ")
+
+                    cap = input("Capítulo: ")
+                    while True:
+                        while not cap.isnumeric():
+                            print("\033[91mERRO! Digite um capítulo válido, existem 12 capítulos. \033[0;0m")
+                            cap = input("Capítulo: ")
+                        while int(cap) <= -1 or int(cap) >= 13:
+                            print("\033[91mERRO! Digite um capítulo válido, existem 12 capítulos. \033[0;0m")
+                            cap = input("Capítulo: ")
+                        cap = int(cap)
+                        cadastrar(arq,nome,cap)
+                        break
+                elif scl == "3":
+                    print ()
+                    lin('DELETAR SAVE')
+                    print ()
+                    linha_a_deletar = int(input("Digite o número do save que deseja deletar: "))
+                    deletar(arq, linha_a_deletar)
+                    print (f"Save {linha_a_deletar} foi deletado com sucesso")
+                
+                elif scl == "4":
+                    print ()
+                    lin('Escolher save')
+                    print ()
+                    lerArquivo(arq)
+                    linha_desejada = int(input("Digite o número do save desejada: ")) 
+                    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, linha_desejada)
+                    if nome_save is not None and cap_save is not None:
+                        print(f"Nome: {nome_save}")
+                        print(f"Capítulo: {cap_save}")
+
+                        
+                elif scl == "5":
+                    print ()
+                    lin('Saindo do sistema... Até logo!')
+                    print ()
+                    break
+                
         str(input("     [ Pressione ENTER ]"))
         time.sleep(1.75)
         os.system('cls')
@@ -168,7 +228,12 @@ while True:
         print ("")
         print ("""               Criador: Pedro Henrique 
                Desenvolvedor: Pedro Henrique
-               Sistema: Pedro Henrique
+               Sistema de Batalha
+               Sistema de Personagem: Pedro Henrique
+               Sistema de Inimigo: Pedro Henrique
+               Sistema de Level_up: Pedro Henrique
+               Sistema de Save: Pedro Henrique
+               Sistema de Equipamento: Pedro Henrique
                Desing Gráfico: Pedro Henrique
                História do Jogo: ChatGPT
                """)

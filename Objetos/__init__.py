@@ -393,23 +393,4 @@ def leiaInt(msg):
             return 0
         else:
             return n
-
-def linha(tam = 42):    
-    return "-"*tam
-
-def cabecalhos(txt):
-    print(linha())
-    print(txt.center(42))
-    print(linha())
-
-def menu (lista = list()):
-    cabecalhos('MENU ARQUIVO')
-    c = 0
-    for item in lista:
-        print(f'[{c}] - {item} ')
-        c += 1
-    print (linha())
-    opc = leiaInt('Sua Opção: ')
-    return opc
-
-
+    
