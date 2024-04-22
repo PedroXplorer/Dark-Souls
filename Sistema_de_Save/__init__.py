@@ -41,7 +41,7 @@ def  lerArquivo(nome):
             p = p + 1
             dado = linha.split(';')
             dado[8] = dado[8].replace('\n', '')
-            print (f"{p} - {dado[0]:<30} Capítulo {dado[1]:>3}\nNome do Personagem: {dado[2]:<25}\n HP:{dado[3]:<3}  ATK:{dado[4]:<3}   MGK:{dado[5]:<5} Ou:{dado[6]:<5} \nPoções de vida: {dado[7]:<5} Poções de magia: {dado[8]:<5}")
+            print (f"[{p}] - {dado[0]:<30} Capítulo {dado[1]:>3}\nNome do Personagem: {dado[2]:<25}\n HP:{dado[3]:<3}  ATK:{dado[4]:<3}   MGK:{dado[5]:<5} Ou:{dado[6]:<5} \nPoções de vida: {dado[7]:<5} Poções de magia: {dado[8]:<5}")
             print("=-"*25)
     finally:
         a.close()
