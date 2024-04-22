@@ -18,9 +18,9 @@ from Objetos import *
 from Equipamento import *
 from Sistema_de_Save import *
 
+arq = 'save.txt'
 parte = -1
 
-print ()
 os.system("cls")
 time.sleep(1.75)
 print ('''
@@ -80,7 +80,7 @@ menu = (''' --------------------------------------------------------------------
 
 \033[93m \033[1m        -- [S] -- \033[0;0m   Começar o jogo
               
-\033[93m \033[1m        -- [R] -- \033[0;0m   Sistema de Saves
+\033[93m \033[1m        -- [R] -- \033[0;0m   Gerenciamento de Saves
 
 \033[93m \033[1m        -- [M] -- \033[0;0m   Mostrar Créditos
 
@@ -116,7 +116,6 @@ while True:
         >> As informações do save serve para guardar o seu progresso, para resetar os seus saves, apague o arquivo ou as suas informações.
         >> Se você for alterar alguma informação dentro dele seu save pode corromper, então tome cuidado.
 """)
-        arq = 'save.txt'
 
         if arquivoExiste(arq):
             print(">> Arquivo encontrado com sucesso!")
@@ -146,6 +145,7 @@ while True:
                 print ()
                 quit()
 
+## Opções de save
             else:
                 while scl != '1' and scl != '2' and scl != '3' and scl != '4' and scl != '5':
                     print("\033[91mERRO! Digite uma opção válida.\033[0;0m")
@@ -162,6 +162,13 @@ while True:
                     lerArquivo(arq)
 
                 elif scl == "2":
+                    with open('save.txt', 'r') as file:
+                        lines = file.read().splitlines()
+                        limit = len(lines)
+                        if limit == 3:
+                            print("\033[91mERRO! Limite de saves alcançado, delete um save e substitua por um novo.\033[0;0m")
+                            continue
+                    
                     lin('NOVO SAVE')
                     nome = input("Nome: ")
                     while nome == "" or nome == '':
@@ -177,6 +184,7 @@ while True:
                             print("\033[91mERRO! Digite um capítulo válido, existem 12 capítulos. \033[0;0m")
                             cap = input("Capítulo: ")
                         cap = int(cap)
+                        nome = nome.upper()
                         cadastrar(arq,nome,cap)
                         break
                 elif scl == "3":
@@ -192,7 +200,7 @@ while True:
                     lin('Escolher save')
                     print ()
                     lerArquivo(arq)
-                    linha_desejada = int(input("Digite o número do save desejada: ")) 
+                    linha_desejada = int(input("Digite o número do save desejado: ")) 
                     nome_save, cap_save = ler_arquivo_e_obter_dados(arq, linha_desejada)
                     if nome_save is not None and cap_save is not None:
                         print(f"Nome: {nome_save}")
@@ -216,10 +224,29 @@ while True:
 
 ## Começar o jogo  
     elif e in  ("S","s"):
-        time.sleep(1.75)
-        os.system('cls') 
-        print ("")
-        break
+        if arquivoExiste(arq):
+            print(">> Arquivo encontrado com sucesso!")
+        else:
+            print (f'>> Arquivo {arq} não encontrado')
+            criarArquivo(arq)
+            print (f'\n>> Arquivo {arq} criado com sucesso!')
+
+        with open('save.txt', 'r') as file:
+            lines = file.read().splitlines()
+            limit = len(lines)
+            if limit == 3:
+                print("\033[91mERRO! Limite de saves alcançado, delete um save e substitua por um novo.\033[0;0m\n")
+                str(input("     [ Pressione ENTER ]"))
+                time.sleep(1.75)
+                os.system('cls')
+                print (menu)
+                e = str(input(">> Sua opção: \033[93m\033[1m")) 
+                print("\033[0;0m")
+            else:
+                time.sleep(1.75)
+                os.system('cls') 
+                print ("")
+                break
         
 ## Mostrar Créditos
     elif e in  ("M","m"):
@@ -232,7 +259,7 @@ while True:
                Sistema de Personagem: Pedro Henrique
                Sistema de Inimigo: Pedro Henrique
                Sistema de Level_up: Pedro Henrique
-               Sistema de Save: Pedro Henrique
+               Gerenciamento de Save: Pedro Henrique
                Sistema de Equipamento: Pedro Henrique
                Desing Gráfico: Pedro Henrique
                História do Jogo: ChatGPT
@@ -317,14 +344,28 @@ while True:
         print("\033[0;0m")
 
 
+# ----------------------------------------------------------------------------------------
 
+import time
+        
 
 nome_jogador = input("\nDigite o nome do seu personagem: ")
 jogador_principal = Caracter(nome_jogador,35, 35, 8, 10, 8, 0, 2,2)
 
-# ----------------------------------------------------------------------------------------
 
-import time
+while True:
+    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 1)
+    if nome_save == None and cap_save ==  None:
+        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+        break
+    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 2)
+    if nome_save == None and cap_save ==  None:
+        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+        break
+    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 3)
+    if nome_save == None and cap_save ==  None:
+        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+        break
 
 def introducao():
     parte = 0

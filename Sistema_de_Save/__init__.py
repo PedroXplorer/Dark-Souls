@@ -40,23 +40,24 @@ def  lerArquivo(nome):
         for linha in a:
             p = p + 1
             dado = linha.split(';')
-            dado[1] = dado[1].replace('\n', '')
-            print (f'{p} - {dado[0]:<30} Capítulo {dado[1]:>3}')
+            dado[8] = dado[8].replace('\n', '')
+            print (f"{p} - {dado[0]:<30} Capítulo {dado[1]:>3}\nNome do Personagem: {dado[2]:<25}\n HP:{dado[3]:<3}  ATK:{dado[4]:<3}   MGK:{dado[5]:<5} Ou:{dado[6]:<5} \nPoções de vida: {dado[7]:<5} Poções de magia: {dado[8]:<5}")
+            print("=-"*25)
     finally:
         a.close()
 
-def cadastrar(arq,nome='<desconhecido>',cap=0):
+def cadastrar(arq,nome='<desconhecido>',cap=0,nome_jogador="???",hp=35,atk=8,mgk=10,ouro=0,php=2,pkm=2):
     try:
         a = open(arq, 'at')
     except:
         print ('\033[91mHouve um ERRO na abertura do arquivo.\033[0;0m')
     else:
         try:
-            a.write(f"{nome};{cap}\n")
+            a.write(f"{nome};{cap};{nome_jogador},{hp};{atk};{mgk};{ouro};{php};{pkm}\n")
         except:
             print ('\033[91mHouve um ERRO ao escrever os dados!\033[0;0m')
         else:
-            print (f"Novo registro do save '{nome}' adicionado.")
+            print (f"Novo registro do save '{nome}' adicionado.\n\n")
             a.close()
 
 def deletar(arq, linha_d):
@@ -68,8 +69,6 @@ def deletar(arq, linha_d):
         return
 
     linhas.pop(linha_d - 1)
-    print (f"Save {linha_d} foi deletado com sucesso")
-
 
     with open(arq, 'w') as arquivo:
         arquivo.writelines(linhas)
@@ -92,5 +91,4 @@ def ler_arquivo_e_obter_dados(arquivo, numero_linha):
         print(f"\033[91mErro! O arquivo '{arquivo}' não foi encontrado.\033[0;0m")
     except Exception as e:
         print(f"\033[91mErro! {e}\033[0;0m")
-    print (f"Save {linha_a_deletar} foi deletado com sucesso")
     return nome, numero

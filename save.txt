@@ -1,5 +1,3 @@
-SLSA;0
-34556;6
-qwer;2
-Pete;7
-Ret;9
+PETER;0;???;35;8;10;0;2;2
+GABRIEL;0;Gabriel;35;8;10;0;2;2
+LKSDFKS;0;lksdfks;35;8;10;0;2;2
