@@ -19,6 +19,7 @@ from Equipamento import *
 from Sistema_de_Save import *
 
 arq = 'save.txt'
+save_selecionado = 0
 parte = -1
 
 os.system("cls")
@@ -115,6 +116,7 @@ while True:
         >> O Sistema de saves funciona criando um arquivo.txt (saves.txt) e colocando as informações de que parte do jogo você parou, ainda está em andamento. 
         >> As informações do save serve para guardar o seu progresso, para resetar os seus saves, apague o arquivo ou as suas informações.
         >> Se você for alterar alguma informação dentro dele seu save pode corromper, então tome cuidado.
+        >> O Save selecionado será sempre inicialmente o save número [1]
 """)
 
         if arquivoExiste(arq):
@@ -162,11 +164,11 @@ while True:
                     lerArquivo(arq)
 
                 elif scl == "2":
-                    with open('save.txt', 'r') as file:
+                    with open(arq, 'r') as file:
                         lines = file.read().splitlines()
                         limit = len(lines)
                         if limit == 3:
-                            print("\033[91mERRO! Limite de saves alcançado, delete um save e substitua por um novo.\033[0;0m")
+                            print("\033[91mERRO! Limite de saves alcançado, delete um save e substitua por um novo. Ou tente selecionar um save e voltar aqui.\033[0;0m")
                             continue
                     
                     lin('NOVO SAVE')
@@ -174,19 +176,9 @@ while True:
                     while nome == "" or nome == '':
                         print("\033[91mERRO! Digite algum nome.\033[0;0m")
                         nome = input("Nome: ")
-
-                    cap = input("Capítulo: ")
-                    while True:
-                        while not cap.isnumeric():
-                            print("\033[91mERRO! Digite um capítulo válido, existem 12 capítulos. \033[0;0m")
-                            cap = input("Capítulo: ")
-                        while int(cap) <= -1 or int(cap) >= 13:
-                            print("\033[91mERRO! Digite um capítulo válido, existem 12 capítulos. \033[0;0m")
-                            cap = input("Capítulo: ")
-                        cap = int(cap)
-                        nome = nome.upper()
-                        cadastrar(arq,nome,cap)
                         break
+                    cadastrar(arq,nome,0,"???")
+
                 elif scl == "3":
                     print ()
                     lin('DELETAR SAVE')
@@ -198,13 +190,18 @@ while True:
                 elif scl == "4":
                     print ()
                     lin('Escolher save')
-                    print ()
                     lerArquivo(arq)
+                    print (f"Save selecionado atualmente: [{save_selecionado}]")
                     linha_desejada = int(input("Digite o número do save desejado: ")) 
                     nome_save, cap_save = ler_arquivo_e_obter_dados(arq, linha_desejada)
                     if nome_save is not None and cap_save is not None:
-                        print(f"Nome: {nome_save}")
-                        print(f"Capítulo: {cap_save}")
+                        with open(arq, 'r') as file:
+                            linhas = file.readlines()
+                        if linha_desejada >= 0 or linha_desejada <= len(linhas):
+                            save_selecionado = linha_desejada 
+                        else:
+                            print("\033[91mErro! Número de save fora do intervalo válido.\033[0;0m")
+                        print(f"Save [{save_selecionado}] '{nome_save}' selecionado com sucesso!")
 
                         
                 elif scl == "5":
@@ -255,13 +252,14 @@ while True:
         print ("")
         print ("""               Criador: Pedro Henrique 
                Desenvolvedor: Pedro Henrique
-               Sistema de Batalha
+               Sistema de Batalha: 
                Sistema de Personagem: Pedro Henrique
                Sistema de Inimigo: Pedro Henrique
                Sistema de Level_up: Pedro Henrique
                Gerenciamento de Save: Pedro Henrique
                Sistema de Equipamento: Pedro Henrique
                Desing Gráfico: Pedro Henrique
+               Gestionamento de Versões: 
                História do Jogo: ChatGPT
                """)
         print ("")
@@ -345,27 +343,35 @@ while True:
 
 
 # ----------------------------------------------------------------------------------------
-
 import time
-        
 
-nome_jogador = input("\nDigite o nome do seu personagem: ")
-jogador_principal = Caracter(nome_jogador,35, 35, 8, 10, 8, 0, 2,2)
-
-
-while True:
-    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 1)
-    if nome_save == None and cap_save ==  None:
-        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
-        break
-    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 2)
-    if nome_save == None and cap_save ==  None:
-        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
-        break
-    nome_save, cap_save = ler_arquivo_e_obter_dados(arq, 3)
-    if nome_save == None and cap_save ==  None:
-        cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
-        break
+if save_selecionado != 0:
+    print(f"Save [{save_selecionado}] foi selecionado.")
+    jogador_principal = Caracter()
+else:
+    while True:
+        with open(arq, 'r') as file:
+            lines = file.read().splitlines()
+            limit = len(lines)
+        if limit == 3:
+            print("\033[91mERRO! Limite de saves alcançado, delete um save e substitua por um novo. Ou tente selecionar um save e voltar aqui.\033[0;0m")
+        else:
+            nome_jogador = input("\nDigite o nome do seu personagem: ")
+            jogador_principal = Caracter(nome_jogador,35, 35, 8, 10, 8, 0, 2,2)
+            nome_save, cap_save = ler_arquivo_e_obter_dados1(arq, 1)
+            if nome_save == None and cap_save ==  None:
+                cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+                break
+            nome_save, cap_save = ler_arquivo_e_obter_dados1(arq, 2)
+            if nome_save == None and cap_save ==  None:
+                cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+                break
+            nome_save, cap_save = ler_arquivo_e_obter_dados1(arq, 3)
+            if nome_save == None and cap_save ==  None:
+                cadastrar(arq,nome_jogador.upper(),0,nome_jogador)
+                break
+print()
+print()
 
 def introducao():
     parte = 0
@@ -377,6 +383,8 @@ def introducao():
     time.sleep(2)
     print("Aventureiros de todo o continente são convocados para encontrar os relicários e salvar os Reinos Esquecidos da destruição iminente.")
     time.sleep(2)
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo1():
     parte =1
@@ -388,6 +396,8 @@ def capitulo1():
     time.sleep(2)
     print("Você foi recrutado(a) por um sábio ancião que revela a profecia dos Relicários Perdidos e os encarrega de encontrar e proteger esses artefatos antigos.")
     time.sleep(2)
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo2():
     parte =2
@@ -399,6 +409,8 @@ def capitulo2():
     batalha(jogador_principal,Slime) # Ladrão 1
     batalha(jogador_principal,Slime) #Ladrão 2
     time.sleep(2)
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo3():
     parte =3
@@ -408,6 +420,7 @@ def capitulo3():
     time.sleep(2)
     print("Traições dentro do próprio grupo e alianças inesperadas desafiam sua lealdade e determinação.")
     time.sleep(2)
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
 
 def capitulo4():
     parte = 4
@@ -418,6 +431,8 @@ def capitulo4():
     print("No entanto, eles descobrem que um antigo inimigo está tramando para usar os artefatos para mergulhar os Reinos Esquecidos na escuridão eterna.")
     time.sleep(2)
     print("Uma batalha épica se desenrola, com o destino dos Reinos pendendo na balança.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def escolha_sim_ou_nao(pergunta):
     while True:
@@ -435,6 +450,8 @@ def final_feliz():
     print("Os artefatos são selados novamente, desta vez em um lugar seguro, para evitar que caiam nas mãos erradas novamente.")
     time.sleep(2)
     print("Os heróis são celebrados como lendas e o continente se prepara para uma nova era de prosperidade e harmonia.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def final_tragico():
     print("\nInfelizmente, os heróis foram derrotados pelo mal e os Reinos Esquecidos caíram na escuridão.")
@@ -442,6 +459,8 @@ def final_tragico():
     print("A esperança foi perdida e os artefatos foram usados para propósitos nefastos.")
     time.sleep(2)
     print("O mundo agora enfrenta uma era de trevas e desespero.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo5():
     parte = 5
@@ -452,6 +471,8 @@ def capitulo5():
     print("Os artefatos são selados novamente, desta vez em um lugar seguro, para evitar que caiam nas mãos erradas novamente.")
     time.sleep(2)
     print("Os heróis são celebrados como lendas e o continente se prepara para uma nova era de prosperidade e harmonia.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo6():
     parte = 6
@@ -460,6 +481,8 @@ def capitulo6():
     print("Antes que os heróis possam alcançar o próximo Relicário, eles são desafiados por uma série de provações elementais, cada uma representando um dos quatro elementos primordiais: terra, água, fogo e ar.")
     time.sleep(2)
     print("Cada desafio testa não apenas suas habilidades de combate, mas também sua sabedoria e habilidades mágicas.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo7():
     parte =7
@@ -468,6 +491,8 @@ def capitulo7():
     print("Uma traição inesperada dentro do grupo de heróis os leva a uma busca por um antigo aliado que se voltou para o lado das trevas.")
     time.sleep(2)
     print("Enquanto viajam por terras distantes, eles encontram pistas sobre os motivos por trás da traição e lutam para decidir se devem buscar justiça ou perdão.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo8():
     parte = 8
@@ -476,6 +501,8 @@ def capitulo8():
     print("Os jogadores descobrem uma antiga cidadela nas profundezas de uma floresta proibida, onde uma raça ancestral de criaturas das sombras guarda o próximo Relicário.")
     time.sleep(2)
     print("Para alcançá-lo, eles devem atravessar os corredores escuros da fortaleza e enfrentar o poderoso guardião que o protege.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo9():
     parte =9
@@ -486,6 +513,8 @@ def capitulo9():
     print("Ele busca usar os artefatos para fortalecer seu domínio sobre os mortos-vivos.")
     time.sleep(2)
     print("Eles devem impedir seus planos malignos antes que seja tarde demais, enfrentando seus exércitos de esqueletos e fantasmas.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo10():
     parte = 10
@@ -496,6 +525,8 @@ def capitulo10():
     print("Os jogadores devem encontrar uma maneira de despertar a besta e derrotá-la para recuperar o Relicário.")
     time.sleep(2)
     print("No entanto, eles logo descobrem que despertar a fera pode ter consequências catastróficas para o mundo.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo11():
     parte = 11
@@ -504,6 +535,8 @@ def capitulo11():
     print("Com os quatro Relicários finalmente reunidos, os heróis enfrentam o antagonista final em uma batalha épica que determinará o destino dos Reinos Esquecidos.")
     time.sleep(2)
     print("Eles devem usar todas as suas habilidades, aliados e sabedoria para derrotar o mal de uma vez por todas e restaurar a paz no mundo.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def capitulo12():
     parte = 12
@@ -514,6 +547,8 @@ def capitulo12():
     print("Alguns continuam suas aventuras, enquanto outros escolhem se estabelecer em paz.")
     time.sleep(2)
     print("Mas eles sempre serão lembrados como aqueles que salvaram os Reinos da escuridão e trouxeram esperança para um mundo dilacerado pela guerra e pela intriga.")
+    AtualizarInformações(arq,save_selecionado,parte,jogador_principal.name,jogador_principal.hp,jogador_principal.atk,jogador_principal.mgk,jogador_principal.df,jogador_principal.ouro,jogador_principal.php,jogador_principal.pmk,jogador_principal.lv,jogador_principal.xp,jogador_principal.m)
+
 
 def historia():
     introducao()

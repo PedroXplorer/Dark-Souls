@@ -1,3 +1,1 @@
-PETER;0;???;35;8;10;0;2;2
-GABRIEL;0;Gabriel;35;8;10;0;2;2
-LKSDFKS;0;lksdfks;35;8;10;0;2;2
+PETE;0;Pete;35;8;10;0;2;2;0;0;0
