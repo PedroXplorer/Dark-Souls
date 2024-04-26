@@ -203,12 +203,14 @@ Escolha a opção (Se não quiser usa-los - Q): '''))
             if tipo == 'vida' and self.php > 0:
                 cura = randint(10,20)
                 self.hp = self.hp + cura
+                self.php = self.php - 1
                 self.cont_p = self.cont_p - 1
                 print (f'{self.name} usou uma poção de vida, recuperando {cura} de hp.')
             
             elif tipo == 'magia' and self.pmk > 0:
                 recup_magia = randint(5,10)
                 self.cont_mgk = self.cont_mgk + recup_magia
+                self.pmk = self.pmk - 1
                 self.cont_p = self.cont_p - 1
                 print (f'{self.name} usou uma poção de magia, recuperando {recup_magia} de magia.')
     

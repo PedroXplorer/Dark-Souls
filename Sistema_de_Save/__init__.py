@@ -118,9 +118,6 @@ def AtualizarInformações(arq,linha_save,new_cap,new_nomeP,new_hp, new_atk, new
     with open(arq, 'r') as file:
         linhas = file.readlines()
         new_nome = linhas[linha_save - 1][0]
-    if linha_save > len(linhas) or linha_save <= 0:
-        print("Número de linha inválido.")
-        return
     atualizacao = f"{new_nome};{new_cap};{new_nomeP};{new_hp};{new_atk};{new_mgk};{new_df};{new_ouro};{new_php};{new_pmk};{new_lv};{new_xp};{new_m}\n"
     linhas[linha_save - 1] = atualizacao
     print()
