@@ -1,0 +1,10 @@
+
+Intruções de como rodar o jogo "Dark_souls.py" da maneira correta:
+1. Abra o CMD
+2. Usando o comando 'cd' entre na pasta onde está o jogo 
+3. Para a abrir o jogo, use o comando py Dark_souls.py
+4. Aproveite
+
+
+
+Criado por: Pedro H.

@@ -1,6 +1,13 @@
 import os
 import random
 
+# ----------------------------------------------------------------
+from Objetos import *
+from Equipamento import *
+from Sistema_de_Save import *
+# ----------------------------------------------------------------
+
+
 largura = 20
 altura = 10
 
@@ -72,9 +79,6 @@ def main():
 
         movimentos_possiveis = verificar_movimento_possivel(mapa, posicao_jogador)
 
-        if not movimentos_possiveis:
-            print("Você está bloqueado! Escolha outra direção.")
-            continue
 
         if direcao == "w":
             novo_x, novo_y = posicao_jogador[0] - 1, posicao_jogador[1]
